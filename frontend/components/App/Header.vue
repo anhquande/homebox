@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-  import MdiPlus from "~icons/mdi/plus";
+  import { use } from "h3";
+import MdiPlus from "~icons/mdi/plus";
 
   const ctx = useAuthContext();
   const api = useUserApi();
@@ -29,29 +30,25 @@
     },
   ];
 
-  const modals = reactive({
-    item: false,
-    location: false,
-    label: false,
-  });
+  const modalStore = useModalStore();
 
   const dropdown = [
     {
       name: "Item / Asset",
       action: () => {
-        modals.item = true;
+        modalStore.openCreateItemModal();
       },
     },
     {
       name: "Location",
       action: () => {
-        modals.location = true;
+        modalStore.openCreateLocationModal();
       },
     },
     {
       name: "Label",
       action: () => {
-        modals.label = true;
+        modalStore.openCreateLocationModal();
       },
     },
   ];
@@ -64,9 +61,9 @@
     up the tree
    -->
   <ModalConfirm />
-  <ItemCreateModal v-model="modals.item" />
-  <LabelCreateModal v-model="modals.label" />
-  <LocationCreateModal v-model="modals.location" />
+  <ItemCreateModal v-model="modalStore.modals.item" />
+  <LabelCreateModal v-model="modalStore.modals.label" />
+  <LocationCreateModal v-model="modalStore.modals.location" />
 
   <div class="bg-neutral absolute shadow-xl top-0 h-[20rem] max-h-96 -z-10 w-full"></div>
 

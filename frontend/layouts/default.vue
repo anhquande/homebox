@@ -6,9 +6,9 @@
     up the tree
    -->
     <ModalConfirm />
-    <ItemCreateModal v-model="modals.item" />
-    <LabelCreateModal v-model="modals.label" />
-    <LocationCreateModal v-model="modals.location" />
+    <ItemCreateModal v-model="modalStore.modals.item" />
+    <LabelCreateModal v-model="modalStore.modals.label" />
+    <LocationCreateModal v-model="modalStore.modals.location" />
     <AppToast />
     <div class="drawer drawer-mobile">
       <input id="my-drawer-2" v-model="drawerToggle" type="checkbox" class="drawer-toggle" />
@@ -53,7 +53,7 @@
                     <span>
                       <MdiPlus class="mr-1 -ml-1" />
                     </span>
-                    Create
+                    New
                   </label>
                   <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40">
                     <li v-for="btn in dropdown" :key="btn.name">
@@ -107,33 +107,7 @@
   // Preload currency format
   useFormatCurrency();
 
-  const modals = reactive({
-    item: false,
-    location: false,
-    label: false,
-    import: false,
-  });
-
-  const dropdown = [
-    {
-      name: "Item / Asset",
-      action: () => {
-        modals.item = true;
-      },
-    },
-    {
-      name: "Location",
-      action: () => {
-        modals.location = true;
-      },
-    },
-    {
-      name: "Label",
-      action: () => {
-        modals.label = true;
-      },
-    },
-  ];
+  const modalStore = useModalStore();
 
   const route = useRoute();
 
@@ -143,6 +117,27 @@
     // unfocus current element
     drawerToggle.value = false;
   }
+
+  const dropdown = [
+    {
+      name: "Item / Asset",
+      action: () => {
+        modalStore.openCreateItemModal();
+      },
+    },
+    {
+      name: "Location",
+      action: () => {
+        modalStore.openCreateLocationModal();
+      },
+    },
+    {
+      name: "Label",
+      action: () => {
+        modalStore.openCreateLocationModal();
+      },
+    },
+  ];
 
   const nav = [
     {
