@@ -38,6 +38,7 @@
   import MdiHome from "~icons/mdi/home";
   import MdiFileTree from "~icons/mdi/file-tree";
   import MdiMagnify from "~icons/mdi/magnify";
+  import MdiLabel from "~icons/mdi/label";
   import MdiAccount from "~icons/mdi/account";
   import MdiCog from "~icons/mdi/cog";
 
@@ -63,10 +64,17 @@
     },
     {
       icon: MdiFileTree,
-      id: 4,
+      id: 5,
       active: computed(() => route.path === "/locations"),
       name: "Locations",
       to: "/locations",
+    },
+    {
+      icon: MdiLabel,
+      id: 4,
+      active: computed(() => route.path === "/labels"),
+      name: "Labels",
+      to: "/labels",
     },
     {
       icon: MdiMagnify,

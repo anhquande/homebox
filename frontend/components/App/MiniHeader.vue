@@ -10,6 +10,8 @@
         x
       </h2>
     </NuxtLink>
+    <div class="flex-grow"></div>
+    <BackButton />
   </div>
 </template>
 

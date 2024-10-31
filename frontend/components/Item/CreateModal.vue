@@ -5,7 +5,7 @@
       <LocationSelector v-model="form.location" />
       <FormTextField ref="nameInput" v-model="form.name" :trigger-focus="focused" :autofocus="true" label="Item Name" />
       <FormTextArea v-model="form.description" label="Item Description" />
-      <FormMultiselect v-model="form.labels" label="Labels" :items="labels ?? []" />
+      <FormSelectLabel v-model="form.labels" :label="'Labels (' + form.labels.length + ')'" :items="labels ?? []" />
       <div class="modal-action">
         <div class="flex justify-center">
           <BaseButton class="rounded-r-none" :loading="loading" type="submit">

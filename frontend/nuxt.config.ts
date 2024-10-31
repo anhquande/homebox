@@ -1,9 +1,13 @@
 import { defineNuxtConfig } from "nuxt/config";
+import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   ssr: false,
   sourcemap: { server: true, client: false },
+  build: {
+    transpile: ["vuetify"],
+  },
   modules: [
     "@nuxtjs/tailwindcss",
     "@pinia/nuxt",
@@ -11,6 +15,12 @@ export default defineNuxtConfig({
     "@vite-pwa/nuxt",
     "./nuxt.proxyoverride.ts",
     "unplugin-icons/nuxt",
+    (_options, nuxt) => {
+      nuxt.hooks.hook("vite:extendConfig", config => {
+        // @ts-expect-error
+        config.plugins.push(vuetify({ autoImport: true }));
+      });
+    },
   ],
   nitro: {
     devProxy: {
@@ -18,6 +28,13 @@ export default defineNuxtConfig({
         target: "http://localhost:7745/api",
         ws: true,
         changeOrigin: true,
+      },
+    },
+  },
+  vite: {
+    vue: {
+      template: {
+        transformAssetUrls,
       },
     },
   },

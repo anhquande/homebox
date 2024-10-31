@@ -465,7 +465,11 @@
           </template>
           <div class="px-5 pt-2 border-t mb-6 grid md:grid-cols-2 gap-4">
             <LocationSelector v-model="item.location" />
-            <FormMultiselect v-model="item.labels" label="Labels" :items="labels ?? []" />
+            <FormSelectLabel
+              v-model="item.labels"
+              :label="'Labels (' + item.labels.length + ')'"
+              :items="labels ?? []"
+            />
             <Autocomplete
               v-if="preferences.editorAdvancedView"
               v-model="parent"

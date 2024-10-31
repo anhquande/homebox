@@ -53,7 +53,7 @@
       </section>
 
       <section>
-        <Subtitle> Labels </Subtitle>
+        <Subtitle> Labels ({{ labels.length }}) </Subtitle>
         <div class="flex gap-4 flex-wrap">
           <LabelChip v-for="label in labels" :key="label.id" size="lg" :label="label" class="shadow-md" />
         </div>
