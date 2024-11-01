@@ -6,6 +6,7 @@ homebox.db
 .DS_Store
 test-mailer.json
 node_modules
+backend/app/api/__debug_bin*
 
 *.venv
 # If you prefer the allow list template instead of the deny list, see community template:
@@ -55,3 +56,6 @@ dist/
 backend/app/api/static/public/*
 !backend/app/api/static/public/.gitkeep
 backend/api
+
+# Debug files
+.vscode
