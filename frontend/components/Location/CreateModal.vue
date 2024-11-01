@@ -43,6 +43,7 @@
     },
   });
 
+  const { locationInitialValues } = useModalStore();
   const modal = useVModel(props, "modelValue");
   const loading = ref(false);
   const focused = ref(false);
@@ -55,14 +56,20 @@
   whenever(
     () => modal.value,
     () => {
+      // focus on name field
       focused.value = true;
+
+      // reset form when modal is opened
+      form.name = locationInitialValues?.name || "";
+      form.description = locationInitialValues?.description || "";
+      form.parent = locationInitialValues?.parent || null;
     }
   );
 
   function reset() {
     form.name = "";
     form.description = "";
-    form.parent = null;
+    form.parent = locationInitialValues?.parent || null;
     focused.value = false;
     loading.value = false;
   }

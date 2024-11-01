@@ -171,7 +171,7 @@
       </section>
 
       <section v-if="location && location.children.length > 0" class="mt-6">
-        <BaseSectionHeader class="mb-5"> Child Locations </BaseSectionHeader>
+        <BaseSectionHeader class="mb-5"> Child Locations ({{ location.children.length }}) </BaseSectionHeader>
         <div class="grid gap-2 grid-cols-1 sm:grid-cols-3">
           <LocationCard v-for="item in location.children" :key="item.id" :location="item" />
         </div>
